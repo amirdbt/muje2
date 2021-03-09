@@ -24,12 +24,3 @@ export const restaurantsTransform = ({ results = [] }) => {
   });
   return camelize(mappedResults);
 };
-
-restaurantsRequest()
-  .then(restaurantsTransform)
-  .then((transformedResults) => {
-    console.log(transformedResults);
-  })
-  .catch((error) => {
-    console.log(error);
-  });

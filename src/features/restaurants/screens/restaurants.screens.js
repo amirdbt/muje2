@@ -13,27 +13,25 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
-const RestaurantIndicator = styled(ActivityIndicator)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
 `;
 
 export const RestaurantsScreen = () => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
 
-  if (isLoading) {
-    return (
-      <RestaurantIndicator
-        animating={true}
-        color={Colors.blue800}
-        size="large"
-      />
-    );
-  }
-
   return (
     <SafeArea>
+      {isLoading && (
+        <LoadingContainer>
+          <Loading size={50} animating={true} color={Colors.blue800} />
+        </LoadingContainer>
+      )}
       <Search />
       <RestaurantList
         data={restaurants}

@@ -35,6 +35,11 @@ export const Open = styled.View`
 export const Icon = styled.Image`
   width: 15px;
   height: 15px;
-  margin-top: 9px;
-  margin-left: -60px;
+  margin-top: 5px;
+`;
+
+export const SectionEnd = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
 `;

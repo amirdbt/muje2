@@ -13,7 +13,9 @@ import {
   Section,
   Open,
   Icon,
+  SectionEnd,
 } from "./restaurant-info-card.styles";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -42,17 +44,23 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                 <SvgXml xml={star} width={20} height={20} />
               ))}
             </Rating>
-            {isClosedTemporarily && (
-              <Text variant="error" style={{ paddingTop: 9, marginRight: -60 }}>
-                CLOSED TEMPORARILY
-              </Text>
-            )}
-            {isOpenNow && (
-              <Open>
-                <SvgXml xml={open} width={20} height={20} />
-              </Open>
-            )}
-            <Icon source={{ uri: icon }} />
+            <SectionEnd>
+              {isClosedTemporarily && (
+                <Text variant="error" style={{ paddingTop: 5 }}>
+                  CLOSED TEMPORARILY
+                </Text>
+              )}
+              <Spacer position="left" size="large">
+                {isOpenNow && (
+                  <Open>
+                    <SvgXml xml={open} width={20} height={20} />
+                  </Open>
+                )}
+              </Spacer>
+              <Spacer position="left" size="large">
+                <Icon source={{ uri: icon }} />
+              </Spacer>
+            </SectionEnd>
           </Section>
           <Address>{address}</Address>
         </Info>

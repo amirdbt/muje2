@@ -7,16 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { RestaurantsNavigator } from "./restaurants.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 import { Ionicons } from "@expo/vector-icons";
-
-function MapScreen() {
-  return (
-    <SafeArea>
-      <Text>Map!</Text>
-    </SafeArea>
-  );
-}
 
 function SettingsScreen() {
   return (

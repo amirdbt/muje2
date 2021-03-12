@@ -6,7 +6,7 @@ export const FavoritesContextProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
   const add = (restaurant) => {
-    setFavorites(...favorites, restaurant);
+    setFavorites([...favorites, restaurant]);
   };
   const remove = (restaurant) => {
     const newFavorite = favorites.filter(

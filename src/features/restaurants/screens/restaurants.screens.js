@@ -27,7 +27,7 @@ const LoadingContainer = styled.View`
 export const RestaurantsScreen = ({ navigation }) => {
   const [isToggled, setIsLogged] = useState(false);
   const { isLoading, restaurants } = useContext(RestaurantsContext);
-  // const { favorites } = useContext(FavoriteContext);
+  const { favorites } = useContext(FavoriteContext);
 
   return (
     <SafeArea>
@@ -40,7 +40,9 @@ export const RestaurantsScreen = ({ navigation }) => {
         onFavoritesToggle={() => setIsLogged(!isToggled)}
         isFavoritesToggled={isToggled}
       />
-      {isToggled && <FavoritesBar />}
+      {isToggled && (
+        <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {

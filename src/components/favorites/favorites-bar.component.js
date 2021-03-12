@@ -1,10 +1,38 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
+import { CompactRestaurantInfo } from "../restaurant/compact-restaurant-info.component";
+import { Spacer } from "../spacer/spacer.component";
+import { Text } from "../typography/text.component";
 
-export const FavoritesBar = () => {
+const FavoritesWrapper = styled.View`
+  padding: 10px;
+`;
+
+export const FavoritesBar = ({ favorites, onNavigate }) => {
+  if (!favorites.length) {
+    return null;
+  }
   return (
-    <View>
-      <Text>Fav bar</Text>
-    </View>
+    <FavoritesWrapper>
+      <Spacer variant="left.large">
+        <Text variant="caption">Favorites</Text>
+      </Spacer>
+
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {favorites.map((restaurant) => {
+          const key = restaurant.name;
+          return (
+            <Spacer position="left" size="medium">
+              <TouchableOpacity
+                onPress={() => onNavigate("RestaurantDetail", { restaurant })}
+              >
+                <CompactRestaurantInfo restaurant={restaurant} />
+              </TouchableOpacity>
+            </Spacer>
+          );
+        })}
+      </ScrollView>
+    </FavoritesWrapper>
   );
 };

@@ -9,9 +9,6 @@ import { Navigation } from "./src/infrastructure/navigation";
 
 //Contexts Apis
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 
 //fonts
 import {
@@ -44,13 +41,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <FavoritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavoritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />

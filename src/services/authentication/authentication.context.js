@@ -8,23 +8,47 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const onLogin = (email, password) => {
+  const onLogin = (email = "amyboy@yahoo.com", password = "dambatta") => {
     setIsLoading(true);
     loginRequest(email, password)
       .then((u) => {
         setUser(u);
         setIsLoading(false);
       })
-      .catch((error) => {
+      .catch((e) => {
         setIsLoading(false);
-        setError(error);
+        setError(e.toString());
       });
   };
+
+  const onRegister = (email, password, repeatedpassword) => {
+    if (password !== repeatedpassword) {
+      setError("Error: Passwords do not match");
+    }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((u) => {
+        setUser(u);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
+
   return (
     <AuthenticationContext.Provider
-      value={{ user, isLoading, error, onLogin, isAuthenticated }}
+      value={{
+        isAuthenticated: !!user,
+        user,
+        isLoading,
+        error,
+        onLogin,
+        onRegister,
+      }}
     >
       {children}
     </AuthenticationContext.Provider>
